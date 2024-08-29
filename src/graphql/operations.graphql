@@ -1,0 +1,137 @@
+query GetBrands {
+  carBrands {
+    id
+    name
+  }
+}
+
+query GetModels($brandId: ID!) {
+  carModels(brandId: $brandId) {
+    brand {
+      id
+      name
+    }
+    id
+    name
+  }
+}
+
+query GetModifications($modelId: ID!) {
+  carModifications(modelId: $modelId) {
+    model {
+      brand {
+        id
+        name
+      }
+      id
+      name
+    }
+    id
+    name
+    coupe
+    horsePower
+    weight
+  }
+}
+
+query GetAllModifications {
+  allCarModifications {
+    model {
+      brand {
+        id
+        name
+      }
+      id
+      name
+    }
+    id
+    name
+    coupe
+    horsePower
+    weight
+  }
+}
+
+mutation CreateCarBrand($name: String!) {
+  createCarBrand(name: $name) {
+    id
+    name
+  }
+}
+
+mutation CreateCarModel($brandId: ID!, $name: String!) {
+  createCarModel(brandId: $brandId, name: $name) {
+    id
+    name
+    brand {
+      id
+      name
+    }
+  }
+}
+
+mutation CreateCarModification($modelId: ID!, $name: String!) {
+  createCarModification(modelId: $modelId, name: $name) {
+    id
+    name
+    coupe
+    horsePower
+    weight
+    model {
+      id
+      name
+      brand {
+        id
+        name
+      }
+    }
+  }
+}
+
+mutation DeleteCarBrand($id: ID!) {
+  deleteCarBrand(id: $id)
+}
+
+mutation DeleteCarModel($id: ID!) {
+  deleteCarModel(id: $id)
+}
+
+mutation DeleteCarModification($id: ID!) {
+  deleteCarModification(id: $id)
+}
+
+mutation EditCarBrand($data: CarBrandData!) {
+  editCarBrand(data: $data) {
+    id
+    name
+  }
+}
+
+mutation EditCarModel($data: CarModelData!) {
+  editCarModel(data: $data) {
+    id
+    name
+    brand {
+      id
+      name
+    }
+  }
+}
+
+mutation EditCarModification($data: CarModificationData!) {
+  editCarModification(data: $data) {
+    id
+    name
+    coupe
+    horsePower
+    weight
+    model {
+      id
+      name
+      brand {
+        id
+        name
+      }
+    }
+  }
+}
